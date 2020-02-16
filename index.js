@@ -1,8 +1,15 @@
 const readline = require('readline-sync');
-function start(){
+const robots = {
+    text: require('./robots/text.js')
+}
+async function start(){
     const content = {}
     content.searchTerm = askAndReturnSearchTerm();
     content.prefix = askAndReturnPrefix();
+    content.lang = askAndReturnLanguage()
+
+    await robots.text(content);
+
     function askAndReturnSearchTerm(){
         return readline.question('Termo para busca no Wikipedia: ')
     }
@@ -11,6 +18,12 @@ function start(){
         const selectdPrefixIndex = readline.keyInSelect(prefixes);
         const selectdPrefixText = prefixes[selectdPrefixIndex];
         return selectdPrefixText;
+    }
+    function askAndReturnLanguage(){
+        const language = ['pt','en']
+        const selectedLangIndex = readline.keyInSelect(language,'Choice Language: ')
+        const selectedLangText = language[selectedLangIndex]
+        return selectedLangText
     }
     console.log(content); 
 }
