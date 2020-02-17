@@ -6,7 +6,7 @@ File: `algorithmia.json`
 
 ```
 {
-    "apiKey": "simGYqUjOuhKzuVuVLl7mNQiCXL1"
+    "apiKey": "coloque a key aqui"
 }
 ```
 
@@ -16,7 +16,7 @@ File: `watson-nlu.json`
 
 ```
 {
-  "apikey": "LUgOfwPGaaTEDP2G8pNSr46TrGQoNjm4GBoACD9_3Alb",
+  "apikey": "coloque a key aqui",
   "iam_apikey_description": "Auto-generated for key 6fbd40fd-3412-4faf-9744-a166a3daf192",
   "iam_apikey_name": "Auto-generated service credentials",
   "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
@@ -31,7 +31,7 @@ File: `google-search.json`
 
 ```
 {
-    "apiKey": "AIzaSyBoVbavEiqurAclq-oPuW__-SvgKK3Cve0",
-    "searchEngineId": "015613338528052398069:ernsfq4z0kb"
+    "apiKey": "coloque a key aqui",
+    "searchEngineId": "coloque a id aqui"
 }
 ```
