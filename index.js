@@ -3,7 +3,9 @@ const robots = {
     text: require('./robots/text.js')
 }
 async function start(){
-    const content = {}
+    const content = {
+        maximumSentences: 7
+    }
     content.searchTerm = askAndReturnSearchTerm();
     content.prefix = askAndReturnPrefix();
     content.lang = askAndReturnLanguage()
@@ -25,6 +27,6 @@ async function start(){
         const selectedLangText = language[selectedLangIndex]
         return selectedLangText
     }
-    console.log(content); 
+    console.log(JSON.stringify(content, null, 4)); 
 }
 start()
