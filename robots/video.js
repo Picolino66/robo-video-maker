@@ -4,15 +4,16 @@ const spawn = require('child_process').spawn;
 const path = require('path');
 const rootPath = path.resolve(__dirname, '..');
 async function robot() {
-    const content = state.load()
+    console.log('[Robo de Video] Comecando...');
+    const content = state.load();
 
-    //await convertAllImages(content);
-    //await createAllSentenceImages(content);
-    //await createYouTubeThumbnail();
-    //await createAfterEffectsScript(content);
+    await convertAllImages(content);
+    await createAllSentenceImages(content);
+    await createYouTubeThumbnail();
+    await createAfterEffectsScript(content);
     await renderVideoWithAfterEffects();
 
-    //state.save(content)
+    state.save(content);
 
     async function convertAllImages(content){
         for (let sentenceIndex = 0; sentenceIndex<content.sentences.length; sentenceIndex++){
@@ -64,9 +65,9 @@ async function robot() {
     }
 
     async function createSentenceImage(sentenceIndex, sentenceText){
-        
         return new Promise((resolve, reject) => {
             const outputFile = `./content/${sentenceIndex}-sentence.png`;
+
             const templateSettings = {
                 0: {
                 size: '1920x400',
@@ -110,7 +111,7 @@ async function robot() {
                 if (error) {
                 return reject(error)
                 }
-                console.log(`>Sentence created: ${outputFile}`)
+                console.log(`[Robo de video] Sentenca criada: ${outputFile}`)
                 resolve()
             })
         })
@@ -125,7 +126,7 @@ async function robot() {
                     return reject(error)
                 }
 
-                console.log('>YouTube thumbnail created')
+                console.log('[Robo de video] Thumbnail criada.')
                 resolve()
             })
         })
@@ -137,21 +138,23 @@ async function robot() {
 
     async function renderVideoWithAfterEffects(){
         return new Promise((resolve, reject) => {
+            //Windows, para linux tem que procurar um outro software
             const aerenderFilePath = 'C:/Program Files/Adobe/Adobe After Effects CC 2019/Support Files/aerender.exe';
             const templateFilePath = `${rootPath}/templates/1/template.aep`;
-            const destinationFilePath = `${rootPath}/content/output.mov`;
+            const destinationFilePath = `${rootPath}/content/${content.searchTerm}-output.mov`;
             
-            console.log("> Starting After Efects");
+            console.log("[Robo de video] Comecando After Effects");
+
             const aerender = spawn(aerenderFilePath, [
                 '-comp', 'main',
                 '-project', templateFilePath,
                 '-output', destinationFilePath
               ])
             aerender.stdout.on('data', (data) => {
-            process.stdout.write(data);
+                process.stdout.write(data);
             })
             aerender.on('close', () => {
-            console.log('> [video-robot] After Effects closed');
+            console.log('[Robo de video] After Effects fechado.');
             resolve();
             })
         })

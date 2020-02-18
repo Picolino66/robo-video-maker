@@ -14,6 +14,7 @@ const nlu = new NaturalLanguageUnderstandingV1({
 const state = require('./state.js');
 
 async function robot() {
+    console.log('[Robo de Texto] Comecando...')
     const content = state.load();
     
     await fetchContentFromWikipedia(content);
@@ -24,7 +25,8 @@ async function robot() {
 
     state.save(content);
 
-    async function fetchContentFromWikipedia(content){
+    async function fetchContentFromWikipedia(content){     
+        console.log('[Robo de Texto] Buscando conteudo da Wikipedia')
         const algorithmiaAuthenticated = algorithmia(algorithmiaApiKey);
         const wikipediaAlgorithm = algorithmiaAuthenticated.algo('web/WikipediaParser/0.1.2');
         const wikipediaResponse = await wikipediaAlgorithm.pipe({
@@ -32,7 +34,9 @@ async function robot() {
             "articleName": content.searchTerm
         });
         const wikipediaContent = wikipediaResponse.get();
+        
         content.sourceContentOriginal = wikipediaContent.content;
+        console.log('[RObo de Texto] Busca acabada!')
     }
 
     function sanitizeContent(content){
@@ -60,6 +64,7 @@ async function robot() {
 
     function breakContentIntoSentences(content){
         content.sentences = []
+
         const sentences = sentenceBoundaryDetection.sentences(content.sourceContentSanitized);
         sentences.forEach((sentences) => {
             content.sentences.push({
@@ -71,12 +76,16 @@ async function robot() {
     }
 
     function limitMaximumSentences(content) {
-        content.sentences = content.sentences.slice(0, content.maximumSentences)
+        content.sentences = content.sentences.slice(0, content.maximumSentences);
     }
     
     async function fetchKeywordsOfAllSentences(content){
+        console.log('[Robo de Texto] Começando a buscar palavras-chave do Watson')
+
         for (const sentence of content.sentences){
+            console.log(`[Robo de texto] Sentenca: "${sentence.text}"`);
             sentence.keywords = await fetchWatsonAndReturnKeywords(sentence.text);
+            console.log(`[Robo de texto] Palavras-chave: ${sentence.keywords.join(', ')}\n`);
         }
     }
 
