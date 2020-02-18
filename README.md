@@ -21,3 +21,5 @@ https://www.youtube.com/watch?v=9wU3zxK8a34&list=PLMdYygf53DP4YTVeu0JxVnWq01uXrL
 O conteúdo do Vídeo pode estar diferente do que encontrará em cada plataforma como google, watson, etc.
 Caso tenha alguma dúvida, só entrar em contato: isaiasbd@hotmail.com
 Última atualização do meu projeto 18/02/2020
+
+*Próxima att, vou tentar implementar outro software livre e gratuito para estar fazendo a renderização do vídeo.
