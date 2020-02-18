@@ -4,6 +4,7 @@ Projeto open source para que seja feito vídeos automatizados.
 # Pré Requisitos
 * Node Js
 * After Effects
+* ImageMagick
 * Api: Algorithmia
 * Api: Watson
 * Google Cloud Plataform
