@@ -12,6 +12,9 @@ Projeto open source para que seja feito vídeos automatizados.
 * Api: Custom Search Enginer
 * Api: YouTube
 
+# Resultados
+![Alt Text](https://www.youtube.com/watch?v=cZfYLz37hYI)
+
 # Créditos
 
 Esse projeto foi idealizado por Felipe Deschamps
@@ -22,7 +25,7 @@ https://www.youtube.com/watch?v=9wU3zxK8a34&list=PLMdYygf53DP4YTVeu0JxVnWq01uXrL
 
 # Atualizações
 
-O conteúdo do Vídeo pode estar diferente do que encontrará em cada plataforma como google, watson, etc.
+*O conteúdo do Vídeo pode estar diferente do que encontrará em cada plataforma como google, watson, etc.*
 
 Caso tenha alguma dúvida, só entrar em contato: isaiasbd@hotmail.com
 
